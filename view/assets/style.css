@@ -1,0 +1,25 @@
+:root {
+  --navbg: #283747; 
+  --white: #ffffff;
+}
+
+* {
+	color: white !important;
+}
+
+body {
+	background-color: #266150;
+}
+
+nav, .nav-item { 
+	background-color: var(--navbg);
+	color: white !important;
+}
+
+.search{
+	color: black !important;
+}
+
+.matchbar {
+	background-color: var(--navbg);
+}
