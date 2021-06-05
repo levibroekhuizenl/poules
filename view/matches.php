@@ -3,18 +3,12 @@
 <body>
   <div class='container matchbar'>
     <div class='row'>
-      <div class='col-lg-12'>
-          <?php
-            include 'controller/matchesController.php';
-            $test  = new MatchesController();
-            $test->handleRequest();
-            if(isset($test->matches)){
-              $matches = $test->matches;
-              echo $matches;
-            }else {
-              echo 'geen wedstrijden beschikbaar';
-            }
-           ?>
+      <div class='col-lg-12' id='content'>
+<?php if(isset($matches)){
+  echo $matches;
+}else {
+  
+} ?>
       </div>
     </div>
   </div>

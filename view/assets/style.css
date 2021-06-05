@@ -1,6 +1,7 @@
 :root {
   --navbg: #283747; 
   --white: #ffffff;
+  --bg: #266150;
 }
 
 * {
@@ -8,7 +9,7 @@
 }
 
 body {
-	background-color: #266150;
+	background-color: var(--bg);
 }
 
 nav, .nav-item { 
@@ -22,4 +23,19 @@ nav, .nav-item {
 
 .matchbar {
 	background-color: var(--navbg);
+}
+
+.game {
+  width: 100px;
+  border: 5px outset var(--bg);
+  background-color: var(--bg);  
+  text-align: center;
+  margin-left: 20%;
+  float: left;
+}
+
+.date {
+  	margin: auto;
+  	text-align: center;
+  	padding-top: 5px;
 }

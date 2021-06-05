@@ -18,15 +18,15 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a type='button' name='todo' value='search' onClick="loadPage('controller/matchesController.php?todo=', sendToContent);" class="nav-link" href="#">Home</a><span class="sr-only">(current)</span></a>
+        <a type='button' name='todo' value='search' onClick="loadPage('controller/matchesController.php?todo=', sendToContent);" class="nav-link" href="#">Wedstrijden</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
       </li>
     </ul>
     <div class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2 search" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <input class="form-control mr-sm-2 search" type="search" name='search' placeholder="Search" aria-label="Search">
+               <button class="btn btn-outline-success my-2 my-sm-0" type='button' name='todo' value='search' onClick="loadPage('controller/matchesController.php?todo=search', sendToContent);"><a>Search</a></button>
     </div>
    </form>
   </div>

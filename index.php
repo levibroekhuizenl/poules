@@ -7,7 +7,7 @@
     <link rel='stylesheet' href='view/assets/style.css'>
 </head>
 
-<body>
+<body onload="loadPage('controller/matchesController.php?todo=', sendToContent);">
 	<?php include 'view/header.php'; ?>
 	<?php include 'view/content.php'; ?>
 	<?php include 'view/footer.php'; ?>

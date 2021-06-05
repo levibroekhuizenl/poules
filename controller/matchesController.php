@@ -1,12 +1,12 @@
 <?php
-// require_once '../model/outputdata.php';
+require_once '../model/matchesLogic.php';
 class MatchesController {
         //properties
         public $matches;
 
         //methods
         function __construct() {
-            // $this->matchesLogic = new matchesLogic();
+            $this->MatchesLogic = new MatchesLogic();
         }
 
         function handleRequest() {
@@ -39,15 +39,16 @@ class MatchesController {
                         include '../view/update.php';
                         break;
                     case 'search':
-                        $this->collectSearchProduct($res);
+                        $res = $_REQUEST['search'];
+                        echo $res;
+                        $this->collectSearchMatch($res);
                         break;
                     case 'delete':
                         $this->collectDeleteProduct($_REQUEST['id']);
                         echo 'verwijderd';
                         break;
                     default:
-                        echo 'test';
-                        // $this->collectDeleteProduct();
+                        $this->collectReadMatches();
                         break;
                 }
 
@@ -56,14 +57,13 @@ class MatchesController {
             }
         }
 
-        function collectCreateProduct($service_name, $service_genre , $service_status, $service_details) {
-            $matches = $this->matchesLogic->createProduct($service_name, $service_genre , $service_status, $service_details);
-            // include '../view/matches.php';
+        function collectReadMatches() {
+            $matches = $this->MatchesLogic->readMatches();
+            include '../view/matches.php';
         }
 
-         public function collectReadProduct($id) {
-            $matches = $this->matchesLogic->readProduct($id);
-            include '../view/read.php';
+         public function collectSearchMatch($res) {
+            $matches = $this->MatchesLogic->searchMatch($res);
         }
 
         function collectreadAllmatches() {
