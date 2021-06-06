@@ -25,7 +25,7 @@
 
         public function searchMatch($res){ 
             try { 
-                $sql = "SELECT * FROM matches WHERE home LIKE '%$res%' OR away LIKE '%$res%'";
+                $sql = "SELECT * FROM accounts, matches WHERE matches.home LIKE '%$res%' OR matches.away LIKE '%$res%' OR accounts.username = '$res'";
                 $res = $this->DataHandler->readsData($sql);
                 $results = $res->fetchAll();
                 $outputdata = new OutputData();

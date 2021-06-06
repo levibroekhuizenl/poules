@@ -12,13 +12,21 @@
                 $this->DataHandler = new DataHandler("localhost", "mysql" ,"poules" ,"root" ,"");
             }
 
-        function readMatches() {
+        function readAccount($username, $password) {
             try { 
-                $sql = 'SELECT * FROM matches';
+                $sql = "SELECT * FROM accounts WHERE username = '$username' ";
                 $res = $this->DataHandler->readsData($sql);
                 $results = $res->fetchAll();
-                $outputdata = new OutputData();
-         return $outputdata->createTable($results);
+                foreach($results as $row){
+                if($row['username'] == $username && ($row['password'] == $password)){
+                        $_SESSION['loggedin'] = true;
+                        $_SESSION['username'] = $username;
+                        return 'Welkom ' . $_SESSION['username'];
+                }else {
+                    return 'inloggen mislukt';
+                    // header("Location: view/login.php");
+                }
+            }
                 // return$results;
             } catch (Exception $e) { throw $e; }
         }
@@ -34,7 +42,7 @@
 
         public function searchMatch($res){ 
             try { 
-                $sql = "SELECT * FROM matches WHERE home LIKE '%$res%' OR away LIKE '%$res%'";
+                $sql = "SELECT * FROM matches, accounts WHERE home LIKE '%$res%' OR away LIKE '%$res%' OR accounts.username LIKE '%$res%'";
                 $res = $this->DataHandler->readsData($sql);
                 $results = $res->fetchAll();
                 $outputdata = new OutputData();

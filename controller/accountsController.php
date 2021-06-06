@@ -22,6 +22,7 @@ class MatchesController {
                     case 'createform':
                         break;
                     case 'register':
+                        session_start();
                         $username = $_REQUEST['username'];
                         $password = $_REQUEST['psw'];
                         $confirm_password = $_REQUEST['psw-repeat'];
@@ -31,10 +32,15 @@ class MatchesController {
                             echo 'wachtwoorden komen niet overeen';
                         }
                         $this->collectCreateAccount($username, $password);
-                        echo '<h1 class="title"> Account aangemaakt </h1>';
+                        $_SESSION['loggedin'] = true;
+                        $_SESSION['username'] = $username;
+                        echo 'welkom' . $_SESSION['username'];
                         break;
-                    case 'read':
-                        $this->collectreadAllmatches();
+                    case 'login':
+                        session_start();
+                        $username = $_REQUEST['username'];
+                        $password = $_REQUEST['psw'];
+                        $this->collectReadAccount($username, $password);
                         break;
                     case 'update':
                         $this->collectUpdateProduct($id, $product_name, $price, $desc);
@@ -42,9 +48,10 @@ class MatchesController {
                     case 'reads':
                         $this->collectreadAllmatches();
                         break;
-                    case 'updateform':
-                        $this->collectReadProduct($id);
-                        include '../view/update.php';
+                    case 'logout':
+                        session_start();
+                        $_SESSION['loggedin'] = null;
+                        echo 'succesvol uitgelogd';
                         break;
                     case 'search':
                         $res = $_REQUEST['search'];
@@ -66,7 +73,7 @@ class MatchesController {
 
         function collectReadMatches() {
             $matches = $this->MatchesLogic->readMatches();
-            include '../view/matches.php';
+            
         }
 
          public function collectSearchMatch($res) {
@@ -77,13 +84,13 @@ class MatchesController {
             $matches = $this->AccountsLogic->createAccount($username, $password);
         }
 
-        function collectUpdateProduct($id, $product_name, $price, $desc) {
-           $matches = $this->matchesLogic->updateProduct($id, $product_name, $price, $desc);
-            include '../view/read.php';
+        function collectReadAccount($username, $password) {
+           $matches = $this->AccountsLogic->readAccount($username, $password);
+           include '../view/matches.php';
         }
 
-        function collectDeleteProduct($id) {
-            $matches = $this->matchesLogic->deleteProduct($id);
+        function collectLogOut() {
+            $matches = $this->matchesLogic->logOutAccount();
         }
 
         function collectSearchProduct($res) {

@@ -34,6 +34,19 @@ nav, .nav-item {
   float: left;
 }
 
+.account {
+  width: 100%;
+  border: 6px outset var(--bg);
+  background-color: var(--navbg);  
+  text-align: center;
+}
+
+.account:hover {
+  border: 7px outset var(--bg);
+  background-color: var(--bg);  
+  text-align: center;
+}
+
 .date {
   	margin: auto;
   	text-align: center;

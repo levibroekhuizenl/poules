@@ -10,7 +10,23 @@
 <body>
 	      	<form method='post' id='theform' name='handleData'>
 	<nav class="navbar navbar-expand-lg navbar-light">
-  <a class="navbar-brand" href="#">Poules</a>
+<?php
+          session_start();
+            if(isset($_SESSION['loggedin'])){
+              if( $_SESSION['loggedin'] == true){
+?>
+        <a type='button' name='todo' value='search' class="nav-link" href="#">
+          <?php
+                echo $_SESSION['username'];
+              }
+            }else {
+              ?>
+        <a type='button' name='todo' value='search' onClick="loadPage('view/login.php', sendToContent);" class="nav-link" href="#">
+          <?php
+                echo 'login';
+              }
+          ?>    
+        </a>    
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -21,7 +37,22 @@
         <a type='button' name='todo' value='search' onClick="loadPage('controller/matchesController.php?todo=', sendToContent);" class="nav-link" href="#">Wedstrijden</a>
       </li>
       <li class="nav-item">
-        <a type='button' name='todo' value='search' onClick="loadPage('view/register.php', sendToContent);" class="nav-link" href="#">Registreren</a>
+          <?php
+            if(isset($_SESSION['loggedin'])){
+              if( $_SESSION['loggedin'] == true){
+?>
+        <a type='button' name='todo' value='search' class="nav-link" onClick="loadPage('controller/accountsController.php?todo=logout', sendToContent);" href="#">
+          <?php
+                echo 'uitloggen';
+              }
+            }else {
+              ?>
+        <a type='button' name='todo' value='search' onClick="loadPage('view/login.php', sendToContent);" class="nav-link" href="#">
+          <?php
+                
+              }
+          ?>    
+        </a>      
       </li>
     </ul>
     <div class="form-inline my-2 my-lg-0">
