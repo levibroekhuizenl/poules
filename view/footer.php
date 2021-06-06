@@ -6,7 +6,7 @@
   <div class='container matchbar'>
     <div class='row'>
       <div class='col-lg-12'>
-
+   </form>
       </div>
     </div>
   </div>

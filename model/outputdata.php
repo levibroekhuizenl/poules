@@ -15,7 +15,8 @@ class OutputData {
     }
 
     function createTable($rows) {
-        $html = '<table border="1">';
+        $html = '<h1 id="title">Wedstrijden</h1>';
+        $html .= '<table border="1">';
             	foreach($rows as $row){
             		$html .= '<tr class="col-12">';
                         $html .= '<div class="row">';

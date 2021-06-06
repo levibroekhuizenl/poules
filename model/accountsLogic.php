@@ -23,6 +23,15 @@
             } catch (Exception $e) { throw $e; }
         }
 
+        function createAccount($username, $password) {
+            try { 
+                $sql = "INSERT INTO accounts (username, password) VALUES ('$username', '$password')";
+                $res = $this->DataHandler->createData($sql);
+                // $results = $res->fetchAll();
+                // return$results;
+            } catch (Exception $e) { throw $e; }
+        }
+
         public function searchMatch($res){ 
             try { 
                 $sql = "SELECT * FROM matches WHERE home LIKE '%$res%' OR away LIKE '%$res%'";

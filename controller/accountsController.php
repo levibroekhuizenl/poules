@@ -1,12 +1,12 @@
 <?php
-require_once '../model/matchesLogic.php';
+require_once '../model/accountsLogic.php';
 class MatchesController {
         //properties
         public $matches;
 
         //methods
         function __construct() {
-            $this->MatchesLogic = new MatchesLogic();
+            $this->AccountsLogic = new MatchesLogic();
         }
 
         function handleRequest() {
@@ -21,9 +21,17 @@ class MatchesController {
                 switch ($todo) {
                     case 'createform':
                         break;
-                    case 'create':
-                        $this->collectCreateProduct($service_name, $service_genre , $service_status, $service_details);
-                        echo '<h1> aangemaakt </h1>';
+                    case 'register':
+                        $username = $_REQUEST['username'];
+                        $password = $_REQUEST['psw'];
+                        $confirm_password = $_REQUEST['psw-repeat'];
+                        if($password == $confirm_password){
+
+                        }else {
+                            echo 'wachtwoorden komen niet overeen';
+                        }
+                        $this->collectCreateAccount($username, $password);
+                        echo '<h1 class="title"> Account aangemaakt </h1>';
                         break;
                     case 'read':
                         $this->collectreadAllmatches();
@@ -65,9 +73,8 @@ class MatchesController {
             $matches = $this->MatchesLogic->searchMatch($res);
         }
 
-        function collectreadAllmatches() {
-            $matches = $this->matchesLogic->readAllmatches();
-            include '../view/read.php';
+        function collectCreateAccount($username, $password) {
+            $matches = $this->AccountsLogic->createAccount($username, $password);
         }
 
         function collectUpdateProduct($id, $product_name, $price, $desc) {
