@@ -21,13 +21,19 @@ class OutputData {
             		$html .= '<tr class="col-12">';
                         $html .= '<div class="row">';
                         $html .= '<div class="game">';
-                        $html .= $row['home'];
+?>
+        <a name='todo' value='search' onClick="loadPage('controller/betsController.php?todo=addMatch&match_id=<?php echo $row['id']?>&quote=<?php $row['hquote'] ?> ', sendToContent);" class="nav-link" href="#">
+            <?php
+                        $html .= $row['home'] . '<br>';
+                        $html .= $row['hquote'];
+                        $html .= '</a></div>';
+                        $html .= '<div class="game">';
+                        $html .= ' - ' . '<br>';
+                        $html .= $row['dquote'];
                         $html .= '</div>';
                         $html .= '<div class="game">';
-                        $html .= ' - ';
-                        $html .= '</div>';
-                        $html .= '<div class="game">';
-                        $html .= $row['away'];
+                        $html .= $row['away'] . '<br>';
+                        $html .= $row['aquote'];
                         $html .= '</div>';
                         $html .= '<div class="date">' . $row['date'] . '</div>';
                         $html .= '</div>';
@@ -36,7 +42,7 @@ class OutputData {
             		$html .= '</tr>';
             	}
         $html .= '</table>';
-
+        session_start();
         return $html;
     }
 

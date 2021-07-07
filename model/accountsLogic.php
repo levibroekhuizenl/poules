@@ -21,6 +21,7 @@
                 if($row['username'] == $username && ($row['password'] == $password)){
                         $_SESSION['loggedin'] = true;
                         $_SESSION['username'] = $username;
+                        $_SESSION['account_id'] = $row['id'];
                         return 'Welkom ' . $_SESSION['username'];
                 }else {
                     return 'inloggen mislukt';
@@ -37,7 +38,10 @@
                 $res = $this->DataHandler->createData($sql);
                 // $results = $res->fetchAll();
                 // return$results;
-            } catch (Exception $e) { throw $e; }
+            } catch (Exception $e) { 
+                echo 'Gebruikersnaam bestaat al of het wachtwoord is niet goed ingevuld.'; 
+                die;
+            }
         }
 
         public function searchMatch($res){ 
